@@ -1,0 +1,44 @@
+CREATE TABLE Products
+(
+   id                  INT(10)                NOT NULL,
+   Global_ID           INT(10)                NOT NULL,
+   name_product        CHAR(50)               NOT NULL,
+   PRIMARY KEY         (id)
+);
+
+CREATE TABLE Products
+(
+   id                  INT(10)                NOT NULL,
+   Global_ID           INT(10)                NOT NULL,
+   name_category       CHAR(50)               NOT NULL,
+   PRIMARY KEY         (id)
+);
+
+SELECT * FROM Products;
+id          Global_ID   name_product
+----------  ----------  ------------
+1           1           Обувь
+2           1           Штаны
+3           1           Куртка
+4           2           Стул
+5           2           Стол
+6           3           Компьютер
+
+SELECT * FROM Categories;
+id          Global_ID   name_category
+----------  ----------  -------------
+1           1           Одежда
+2           2           Мебель
+
+SELECT Products.name_product, Categories.name_category
+FROM Products LEFT OUTER JOIN Categories
+ON Products.Global_ID = Categories.Global_ID;
+
+name_product  name_category
+------------  -------------
+Обувь         Одежда
+Штаны         Одежда
+Куртка        Одежда
+Стул          Мебель
+Стол          Мебель
+Компьютер
